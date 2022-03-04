@@ -80,7 +80,7 @@ def registration_request(request):
             return redirect("djangoapp:index")
         else:
             context['message'] = "User already exists."
-            return render(request, 'djangoapp:registration', context)
+            return render(request, 'djangoapp/registration.html', context)
 
 # Update the `get_dealerships` view to render the index page with a list of dealerships
 def get_dealerships(request):

@@ -6,24 +6,42 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
     <body>
-        <form class="form-inline" action="{% url 'djangoapp:registration_request' %}" method="post">
-            {% csrf_token %}
-            <div class="input-group">
-                <label>User Name</label>
-                <input type="text" class="form-control" placeholder="Username" name="username" >
-                <label>First Name</label>
-                <input type="text" class="form-control" placeholder="Firstname" name="firstname" >
-                <label>Last Name</label>
-                <input type="text" class="form-control" placeholder="Lastname" name="lastname" >
-                <label>Password</label>
-                <input type="password" class="form-control" placeholder="Username" name="psw" >
-                
-                {{user.username}}
+        <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                      <a class="navbar-brand" href="#">Dealership Review</a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="container-fluid">
+            <p class="h5">Sign Up</p>
+            
+            <form action="{% url 'djangoapp:registration_request' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="Username">User Name</label>
+                    <input type="text" class="form-control col-3" placeholder="Username" name="username" >
+                </div>
+                <div class="form-group">
+                    <label for="Firstname">First Name</label>
+                    <input type="text" class="form-control col-3" placeholder="Firstname" name="firstname" >
+                </div>
+                <div class="form-group">
+                    <label for="Lastname">Last Name</label>
+                    <input type="text" class="form-control col-3" placeholder="Lastname" name="lastname" >
+                </div>
+                <div class="form-group">
+                    <label for="psw">Password</label>
+                    <input type="password" class="form-control col-3" placeholder="Password" name="psw" >
+                </div>
+                    
+                <p class="lead">{{message}}</p>
 
                 <button class="btn btn-primary" type="submit">Sign up</button>
-            </div>
-        </form>
-
+                
+            </form>
+        </div>
 
     </body>
 </html>
