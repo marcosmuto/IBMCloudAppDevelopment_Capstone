@@ -31,6 +31,10 @@ def contact(request):
     context = {}
     return render(request, 'djangoapp/contact.html', context)
 
+def registration(request):
+    context = {}
+    return render(request, 'djangoapp/registration.html', context)
+
 # Create a `login_request` view to handle sign in request
 def login_request(request):
     context = {}

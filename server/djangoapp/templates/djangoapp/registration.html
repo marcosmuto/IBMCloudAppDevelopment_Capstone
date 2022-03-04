@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
     <body>
-        <form class="form-inline" action="{% url 'djangoapp:registration' %}" method="post">
+        <form class="form-inline" action="{% url 'djangoapp:registration_request' %}" method="post">
             {% csrf_token %}
             <div class="input-group">
                 <label>User Name</label>
