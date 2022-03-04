@@ -22,12 +22,6 @@
                   <a class="navbar-brand" href="#">Dealership Review</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a class="btn btn-link" href="{% url 'djangoapp:about' %}">About</a>
-                </li>
-                <li>
-                    <a class="btn btn-link" href="{% url 'djangoapp:contact' %}">Contact</a>
-                </li>
                 {% if user.is_authenticated %}
                 <li>
                     <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
@@ -53,5 +47,15 @@
     <!--Add a dealer table here -->
 
     </body>
-
+    <footer class="fixed-bottom">
+		<nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+			<div class="navbar-footer">
+				<a class="btn btn-link" href="about.html">About</a>
+				|
+				<a class="btn btn-link" href="contact.html">Contact</a>
+            </div>
+        </div>
+		</nav>
+	</footer>
 </html>
