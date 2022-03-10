@@ -24,9 +24,11 @@ def get_request(url, **kwargs):
             response = requests.get(url, 
                 headers={'Content-Type': 'application/json'}, 
                 params=kwargs)
-    except:
+    except Exception as excep:
         # If any error occurs
-        print("Network exception occurred")
+        print("Network exception occurred:")
+        print(excep)
+
     status_code = response.status_code
     print("With status {} ".format(status_code))
     json_data = json.loads(response.text)
@@ -129,16 +131,18 @@ def analyze_review_sentiments(dealerreview):
 
     print(json_result)
 
-    response = ""
+    response = "neutral"
 
     try: 
         if "sentiment" in json_result:
             response = json_result["sentiment"]["document"]["label"]
         elif "error" in json_result:
-            response = json_result["error"]
+            #response = json_result["error"]
+            response = "neutral"
     except:
         # If any error occurs
-        response = "Error trying to analyze the sentiment"
+        #response = "Error trying to analyze the sentiment"
+        response = "neutral"
 
     return response
 
