@@ -107,6 +107,22 @@ def get_dealer_reviews(request, dealer_id):
         return HttpResponse(reviewers)
 
 # Create a `add_review` view to submit a review
-# def add_review(request, dealer_id):
-# ...
+def add_review(request, dealer_id):
+    user = request.user
+    if user:
+        review = dict()
+        review["id"] = datetime.utcnow().isoformat()
+        review["name"] = "Marcos Muto"
+        review["dealership"] = dealer_id
+        review["review"] = "This is a great car dealer"
+        review["purchase"] = False
+        review["purchase_date"] = "02/16/2021"
+        review["car_make"] = "Honda"
+        review["car_model"] = "Civic"
+        review["car_year"] = 2022
+
+        json_payload = dict()
+        json_payload["review"] = review
+    else:
+        return redirect('djangoapp:index')
 
