@@ -1,19 +1,25 @@
 import requests
 import json
+from datetime import datetime
 from requests.auth import HTTPBasicAuth
 
-params = dict()
-params["text"] = "this is awesome"
-params["version"] = "2021-08-01"
-params["features"] = "sentiment"
-params["return_analyzed_text"] = "return_analyzed_text"
+review = dict()
+review["id"] = int(datetime.now().timestamp())
+review["name"] = "Marcos Muto"
+review["dealership"] = 1
+review["review"] = "Good deal"
+review["purchase"] = True
+review["purchase_date"] = "02/16/2020"
+review["car_make"] = "Honda"
+review["car_model"] = "Fit"
+review["car_year"] = 2020
 
-url='https://api.us-south.natural-language-understanding.watson.cloud.ibm.com/instances/da0f2ced-9cd4-4264-acc5-e40f7a5d8de7/v1/analyze'
+print(review)
+
+json_payload = dict()
+json_payload["review"] = review
+
+url="https://43bb4759.us-south.apigw.appdomain.cloud/api/review"
     
-response = requests.get(url, 
-                headers={'Content-Type': 'application/json'}, 
-                auth=HTTPBasicAuth('apikey', api_key),
-                params=params)
-
-json_data = json.loads(response.text)
-print(json_data["sentiment"]["document"]["label"])
+response = requests.post(url, json=json_payload)
+print(response)
