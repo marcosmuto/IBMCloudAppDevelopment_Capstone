@@ -10,6 +10,7 @@ env:
   IBM_CLOUD_ORG: marcos.muto@gmail.com
   MANIFEST_NAME: manifest.yml
   IBM_CLOUD_API: ${{secrets.IBM_CLOUD_API_KEY}}
+  IBM_CLOUD_NLU_API_KEY: ${{secrets.IBM_CLOUD_NLU_API_KEY}}
 
 defaults:
   run:
@@ -27,6 +28,9 @@ jobs:
           curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
           ibmcloud --version
           ibmcloud config --check-version=false
+        shell: bash
+      - name: Inject NLU api key
+        run: sed -i 's/#IBM_CLOUD_NLU_API_KEY#/$IBM_CLOUD_NLU_API_KEY/' djangoapp/restapis.py
         shell: bash
       - name: Install CF plugin
         run: ibmcloud cf install -f
