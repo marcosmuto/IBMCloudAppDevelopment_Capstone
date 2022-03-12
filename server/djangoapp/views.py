@@ -153,7 +153,7 @@ def add_review(request, dealer_id):
             review["dealership"] = dealer_id
             review["review"] = request.POST['review']
             review["purchase"] = True if 'purchasecheck' in request.POST else False
-            review["purchase_date"] = if request.POST['purchasedate'] if 'purchasedate' int request.POST else datetime.now().strftime("%m/%d/%Y")
+            review["purchase_date"] = request.POST['purchasedate'] if 'purchasedate' in request.POST else datetime.now().strftime("%m/%d/%Y")
             review["car_make"] = car.make_id.name
             review["car_model"] = car.name
             review["car_year"] = car.year.strftime("%Y")
