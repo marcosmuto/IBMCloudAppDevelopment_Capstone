@@ -1,8 +1,8 @@
 import requests
 import json
+import os
 from .models import CarDealer, DealerReview
 from requests.auth import HTTPBasicAuth
-
 
 # Create a `get_request` to make HTTP GET requests
 # e.g., response = requests.get(url, params=params, headers={'Content-Type': 'application/json'},
@@ -124,7 +124,11 @@ def analyze_review_sentiments(dealerreview):
     params["version"] = "2021-08-01"
     params["features"] = "sentiment"
     params["return_analyzed_text"] = "return_analyzed_text"
+    
     api_key = '#IBM_CLOUD_NLU_API_KEY#'
+    if os.getenv('VCAP_APPLICATION'):
+        api_key = os.getenv('IBM_CLOUD_NLU_API_KEY')
+
     url='https://api.us-south.natural-language-understanding.watson.cloud.ibm.com/instances/da0f2ced-9cd4-4264-acc5-e40f7a5d8de7/v1/analyze'
 
     json_result = get_request(url, params=params, api_key=api_key)
